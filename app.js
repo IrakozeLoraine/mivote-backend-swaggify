@@ -7,6 +7,9 @@ const app = express();
 app.use(express.json());
 app.use(bodyParser.json());
 app.use(cors());
-require('./routes')(app);
+
+require('./routes/polls')(app);
+require('./routes/auth')(app);
+require('./routes/candidate')(app);
 
 module.exports = app;
