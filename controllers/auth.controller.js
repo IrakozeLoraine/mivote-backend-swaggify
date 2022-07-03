@@ -27,6 +27,14 @@ exports.register = async (req, res) => {
     const foundUser = newUser.toJSON();
     delete foundUser.password;
 
+    const token = jwt.sign(
+      { user_id: foundUser._id, phone: foundUser.phone },
+      'mivote_secret',
+      { expiresIn: '1d' }
+    );
+
+    foundUser.token = token;
+
     return res.status(201).send({ message: 'User created!', data: foundUser });
   } catch (err) {
     return res.status(400).send(err.message);
