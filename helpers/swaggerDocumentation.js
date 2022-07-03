@@ -1,8 +1,8 @@
-const userSchema = require('../routes/auth/auth.doc');
+const userSchema = require('../routes/auth/auth.schema');
 const authRouteDoc = require('../routes/auth/auth.doc');
-const candidateSchema = require('../routes/candidate/candidate.doc');
+const candidateSchema = require('../routes/candidate/candidate.schema');
 const candidateRouteDoc = require('../routes/candidate/candidate.doc');
-const pollSchema = require('../routes/polls/polls.doc');
+const pollSchema = require('../routes/polls/polls.schema');
 const pollRouteDoc = require('../routes/polls/polls.doc');
 
 const version = require('../package.json').version;
