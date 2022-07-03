@@ -42,7 +42,20 @@ const swaggerDocumentation = {
       ...userSchema,
       ...candidateSchema,
     },
+    securitySchemes: {
+      bearerAuth: {
+        type: 'http',
+        scheme: 'bearer',
+        bearerFormat: 'JWT',
+        in: 'header',
+      },
+    },
   },
+  security: [
+    {
+      bearerAuth: [],
+    },
+  ],
 };
 
 module.exports = swaggerDocumentation;
