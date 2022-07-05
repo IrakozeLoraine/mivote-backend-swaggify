@@ -3,8 +3,8 @@ const candidateSchema = {
     type: 'object',
     properties: {
       _id: { type: 'string' },
-      user_id: { type: 'string' },
-      poll_id: { type: 'string' },
+      user: { type: 'object' },
+      poll: { type: 'object' },
       votes: { type: 'number' },
       bio: { type: 'string' },
       goals: { type: 'string' },
@@ -13,5 +13,7 @@ const candidateSchema = {
     },
   },
 };
+
+registerSchema('Candidate', candidateSchema, { orm: 'mongoose' });
 
 module.exports = candidateSchema;

@@ -34,10 +34,26 @@ exports.createCandidate = async (req, res) => {
 
 exports.getCandidatesByPoll = async (req, res) => {
   try {
-    const candidates = await Candidate.find({ poll_id: req.params.poll_id });
+    const candidates = await Candidate.find({
+      poll_id: req.params.poll_id,
+    })
+      .populate({ path: 'user_id', model: User })
+      .populate({ path: 'poll_id', model: Poll })
+      .lean()
+      .exec();
+
+    const newCandidates = candidates.map((candidate) => {
+      candidate.user = candidate.user_id;
+      candidate.poll = candidate.poll_id;
+      delete candidate.user_id;
+      delete candidate.poll_id;
+
+      return candidate;
+    });
+
     return res
       .status(200)
-      .send({ message: 'Candidates retrieved!', data: candidates });
+      .send({ message: 'Candidates retrieved!', data: newCandidates });
   } catch (error) {
     return res.status(400).send(error.message);
   }

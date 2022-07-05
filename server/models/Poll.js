@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const { registerSchema } = require('swaggiffy');
 
 const PollSchema = mongoose.Schema({
   name: { type: String, required: true },
@@ -16,5 +17,7 @@ const PollSchema = mongoose.Schema({
     default: Date.now(),
   },
 });
+
+registerSchema('Poll', PollSchema, { orm: 'mongoose' });
 
 module.exports = mongoose.model('Poll', PollSchema);

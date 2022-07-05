@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
-const MONGO_URI = 'mongodb://localhost:27017/mivote';
+const { DB_HOST, DB_PORT, DB_NAME } = process.env;
+
+const MONGO_URI = `mongodb://${DB_HOST}:${DB_PORT}/${DB_NAME}`;
 
 exports.connect = () => {
   mongoose

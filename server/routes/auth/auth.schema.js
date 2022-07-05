@@ -13,4 +13,6 @@ const userSchema = {
   },
 };
 
+registerSchema('User', userSchema, { orm: 'mongoose' });
+
 module.exports = userSchema;
